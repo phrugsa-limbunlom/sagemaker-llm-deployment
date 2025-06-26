@@ -1,0 +1,8 @@
+# Instance type reference https://aws.amazon.com/ec2/instance-types/
+
+region : <YOUR_REGION> # London
+role : <YOUR_ROLE>
+bucket : <YOUR_BUCKET>
+model_artifacts : model.tar.gz
+instance_type : ml.g4dn.xlarge
+hf_model_id : meta-llama/Llama-2-7b-chat-hf
