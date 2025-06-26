@@ -11,8 +11,8 @@ A Python toolkit for deploying and testing Large Language Models (LLMs) on AWS S
 
 ### Configure AWS account
 
-- Install AWS CLI: ```bash  pip install awscli```
-- Configure AWS CLI: ```bash aws configure```
+- Install AWS CLI: ```pip install awscli```
+- Configure AWS CLI: ```aws configure```
 - Set AWS Access Key ID and AWS Secret Access Key
 
 ## Installation
