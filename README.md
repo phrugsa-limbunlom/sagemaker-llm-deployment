@@ -6,8 +6,14 @@ A Python toolkit for deploying and testing Large Language Models (LLMs) on AWS S
 
 - AWS CLI configured with appropriate permissions
 - Python 3.8+
-- AWS account with SageMaker access
+- AWS account with SageMaker access (Config your IAM role and IAM policies)
 - HuggingFace account and token (for private models)
+
+### Configure AWS account
+
+- Install AWS CLI: ```bash  pip install awscli```
+- Configure AWS CLI: ```bash aws configure```
+- Set AWS Access Key ID and AWS Secret Access Key
 
 ## Installation
 
@@ -47,6 +53,7 @@ model_artifacts: "path/to/model.tar.gz"  # Optional: for custom models
 - `region`: AWS region for deployment
 - `role`: SageMaker execution role ARN
 - `instance_type`: EC2 instance type for hosting the model
+- `hf_model_id`: HuggingFace model identifier (optional if using custom model)
 - `bucket`: S3 bucket for model artifacts (for custom models)
 - `model_artifacts`: Path to model artifacts in S3 (for custom models)
 
@@ -92,7 +99,7 @@ tar -czf model_artifacts.tar.gz -C "folder-name" .
 
 - Push model artifacts to your S3 bucket
 ```bash
-aws s3 cp model_artifacts.tar.gz s3://{YOUR_BUCKET}/"folder-name".tar.gz
+aws s3 cp model_artifacts.tar.gz s3://{YOUR_BUCKET}/{FOLDER_NAME}.tar.gz
 ```
 
 ### 2. Test the Deployed Model
