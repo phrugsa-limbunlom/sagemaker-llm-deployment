@@ -16,16 +16,23 @@ from dotenv import find_dotenv, load_dotenv
 def get_LMI_image():
     """Get the latest LMI container image URI.
     This is the pre-built AWS container with vLLM support."""
-    image_uri = image_uris.retrieve(
-        framework="djl-lmi",  # or "djl-deepspeed"
-        region=sagemaker_session.boto_session.region_name,
-        version="0.28.0"  # Latest LMI version
-    )
+
+    # image_uri = image_uris.retrieve(
+    #     framework="djl-lmi",  # or "djl-deepspeed"
+    #     region=sagemaker_session.boto_session.region_name,
+    #     version= "0.30.0"
+    # )
+
+    REGION = sagemaker_session.boto_session.region_name
+
+    CONTAINER_VERSION = '0.33.0-lmi15.0.0-cu128'
+
+    image_uri = f'763104351884.dkr.ecr.{REGION}.amazonaws.com/djl-inference:{CONTAINER_VERSION}'
 
     return image_uri
 
 def create_model(model_name: str, model_id : Optional[str], role: str, image_uri: str):
-    """Create HuggingFace model from Hub (no model_data needed)."""
+    """Create HuggingFace model from Hub or model artifacts."""
 
     load_dotenv(find_dotenv())
 
@@ -38,7 +45,11 @@ def create_model(model_name: str, model_id : Optional[str], role: str, image_uri
                 'HF_TOKEN': HF_TOKEN,
                 'HF_TASK': 'text-generation',
                 'SAGEMAKER_CONTAINER_LOG_LEVEL': '20',
-            }
+                'OPTION_ASYNC_MODE' : 'true',
+                'OPTION_ROLLING_BATCH' : 'disable',
+                'OPTION_ENTRYPOINT' : 'djl_python.lmi_vllm.vllm_async_service',
+                'TENSOR_PARALLEL_DEGREE' : 'max'
+        }
 
         assert env['HF_TOKEN'] == HF_TOKEN, "You have to provide a token."
 
