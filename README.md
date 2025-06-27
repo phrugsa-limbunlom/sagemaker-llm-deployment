@@ -75,7 +75,7 @@ The script will:
 
 The successful result is shown in CLI. For example: 
 ```bash
-Using LMI container: 763104351884.dkr.ecr.eu-west-2.amazonaws.com/djl-inference:0.28.0-lmi10.0.0-cu124
+Using LMI container: 763104351884.dkr.ecr.eu-west-2.amazonaws.com/djl-inference:0.33.0-lmi15.0.0-cu128
 Creating model: llama-2-7b-model-2025-06-26-13-04
 Model created: llama-2-7b-model-2025-06-26-13-04
 Deploying model: llama-2-7b-model-2025-06-26-13-04
