@@ -1,6 +1,6 @@
 # SageMaker LLM Deployment and Testing
 
-A Python toolkit for deploying and testing Large Language Models (LLMs) on AWS SageMaker using HuggingFace models and the LMI (Large Model Inference) container.
+A Python toolkit for deploying and testing Large Language Models (LLMs) on AWS SageMaker using HuggingFace models and the LMI (Large Model Inference) container with a vLLM support as a backend engine for optimizing model inference performance.
 
 ## Prerequisites
 
@@ -82,7 +82,7 @@ Deploying model: llama-2-7b-model-2025-06-26-13-04
 ----------------!Model deployed to endpoint: vllm-endpoint-llama2-2025-06-26-13-04
 ```
 
-You can check your uploaded model in ```Amazon SageMaker AI > Inference > Models```, and endpoint status and cloud watch log in ```Amazon SageMaker AI > Inference > Endpoints```
+You can check your uploaded model in ```Amazon SageMaker AI > Inference > Models```, and endpoint status and cloudwatch log in ```Amazon SageMaker AI > Inference > Endpoints```
 
 ## To create model from model artifacts
  
@@ -91,7 +91,10 @@ You can check your uploaded model in ```Amazon SageMaker AI > Inference > Models
 ```bash
 python download_model.py --model-name "your-hugging-face-model-id" --model-path "your-local-path"
 ```
-- Zip model artifacts to tar file
+
+- Set properties to use vLLM with async mode, refer from ```model/serving.properties```
+
+- Zip model artifacts with ```serving.properties``` to tar file
 
 ```bash
 tar -czf model_artifacts.tar.gz -C "folder-name" .
@@ -288,6 +291,10 @@ print(response['EndpointStatus'])
 - Use IAM roles with minimal required permissions
 - Enable VPC endpoints for private deployments
 - Regularly rotate access tokens
+
+## Reference
+- https://aws.amazon.com/blogs/machine-learning/supercharge-your-llm-performance-with-amazon-sagemaker-large-model-inference-container-v15/
+- https://docs.djl.ai/master/docs/serving/serving/docs/lmi/user_guides/vllm_user_guide.html
 
 ## License
 
