@@ -1,5 +1,8 @@
 # SageMaker LLM Deployment and Testing
 
+![1750961546133](https://github.com/user-attachments/assets/c682766b-50a3-42e7-9f0c-27f0d05b74a8)
+
+
 A Python toolkit for deploying and testing Large Language Models (LLMs) on AWS SageMaker using HuggingFace models and the LMI (Large Model Inference) container with a vLLM support as a backend engine for optimizing model inference performance.
 
 ## Prerequisites
@@ -18,7 +21,8 @@ A Python toolkit for deploying and testing Large Language Models (LLMs) on AWS S
 ## Installation
 
 1. Clone this repository:
-```bash
+```bash![1750961546133](https://github.com/user-attachments/assets/b2ebad5f-23d9-4ee4-8db0-a912d99520ac)
+
 git clone <repository-url>
 cd sagemaker-llm-deployment
 ```
